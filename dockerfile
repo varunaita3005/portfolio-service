@@ -3,5 +3,5 @@ WORKDIR /app
 COPY ./ /app/
 RUN chmod +x ./gradlew && ./gradlew bootJar --no-daemon -x test
 FROM docker.io/redhat/ubi9
-COPY --from=builder /app/build/libs/portfolio-service.jar .
+COPY --from=builder /app/build/libs/*.jar ./portfolio-service.jar
 ENTRYPOINT [ "java", "-jar", "./portfolio-service.jar" ]
